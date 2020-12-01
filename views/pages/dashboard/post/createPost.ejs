@@ -1,0 +1,75 @@
+<%- include('../../../partials/head.ejs') %>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.css">
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2">
+                <%- include('../../../partials/sidebar.ejs') %> 
+            </div>
+
+            <div class="col-md-10 my-5">
+                 <div class="mx-5 card card-body py-5">
+                     <h5 class="my-3">Create A new Post</h5>
+                     <form action="/posts/create" method="POST" enctype="multipart/form-data">
+
+                        <div class="form-group">
+                            <label for="title">Enter Your Post Title</label>
+                            <input type="text"name="title" 
+                            id="title" class="form-control <%= error.title ? 'is-invalid' : '' %> " 
+                            value="<%= value.title ? value.title : '' %>">
+                            <div class="invalid-feedback">
+                                <%= error.title %> 
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="tiby-mce-post-body">Enter Your Post Body</label>
+                            <textarea name="body" id="tiny-mce-post-body" 
+                            class="form-control <%= error.body ? 'is-invalid':''%>"><%= value.body ? value.body: '' %></textarea>
+                            <div class="invalid-feedback">
+                                <%= error.body %> 
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="tags">Enter some tags (max 10)</label>
+                            <input  
+                            type="text" name="tags" id="tags" placeholder="tag1, tag2, tag3" class="form-control"
+                            value="<%= value.tags ? value.tags: '' %>">
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Upload</span>
+                            </div>
+                            <div class="custom-file">
+                                <input type="file" name="post-thumbnail" class="custom-file-input" id="inputGroupFile">
+                                <label for="inputGroupFile" class="custom-file-label">Choose File</label>
+                            </div>
+                        </div>
+                        <input type="submit" class="btn btn-primary" value="Create Post"/>
+                    </form>
+                 </div>
+                </div>
+            </div>
+
+
+        </div>
+        <%- include('../../../partials/footer.ejs') %>
+
+        <script src="https://cdn.tiny.cloud/1/0jml1j4dxqn7qzr0yywgdkrzmawf5tlscsmmh98ow4hilh33/tinymce/5/tinymce.min.js" 
+        referrerpolicy="origin"></script>
+        <script src="/scripts/tinymce.js"></script>
+
+        <script>
+            $('#inputGroupFile').on('change', function(e) {
+                let filename = e.target.files[0].name 
+                $(this).next('.custom-file-label').html(filename)
+            })
+
+        </script>
+
+
+
+        </body>
+    </html>

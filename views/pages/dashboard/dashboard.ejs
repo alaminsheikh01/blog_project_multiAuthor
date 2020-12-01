@@ -1,0 +1,101 @@
+<%- include('../../partials/head.ejs') %>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.css">
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2">
+                <%- include('../../partials/sidebar.ejs') %> 
+            </div>
+
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col-md-8 offset-md-1 my-5">
+                        <h5>My Recently Created Posts</h5>
+
+                        <div class="row">
+                            <% if(posts.length == 0) {%>
+        
+                                <div class="text-center text-muted">
+                                    <p>There are no posts available right now </p>
+                                   
+                                </div>
+        
+                            <% } else{%>
+                                <% for (let post of posts) {%>
+                                    <div class="card col-sm-3 m-2">
+                                        <% if(post.thumbnail) {%>
+                                            <img src="<%= post.thumbnail %> " alt="<%= post.title %> " class="card-img-top mt-3">
+                                        <% } %>  
+                                        <div class="card-body p-0">
+                                            <a href="/explorar/<%= post._id %> " style="color: black;">
+                                            <p class="my-2"><%= post.title %> </p></a>
+                                        </div>
+                                    </div>
+                                <% } %>  
+                            <% } %>   
+                        </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-8 offset-md-1 my-5">
+                            <h5>My Recently Created Bookmraks</h5>
+    
+                            <div class="row">
+                                <% if(bookmarks.length == 0) {%>
+            
+                                    <div class="text-center text-muted">
+                                        <p>There are no posts available right now </p>
+                                       
+                                    </div>
+            
+                                <% } else{%>
+                                    <% for (let post of bookmarks) {%>
+                                        <div class="card col-sm-3 m-2">
+                                            <% if(post.thumbnail) {%>
+                                                <img src="<%= post.thumbnail %> " alt="<%= post.title %> " class="card-img-top mt-3">
+                                            <% } %>  
+                                            <div class="card-body p-0">
+                                                <a href="/explorar/<%= post._id %> " style="color: black;">
+                                                <p class="my-2"><%= post.title %> </p></a>
+                                            </div>
+                                        </div>
+                                    <% } %>  
+                                <% } %>   
+                            </div>
+    
+                            </div>
+                        </div>
+                </div>
+            </div>
+
+            <div class="modal fade bd-example-modal-lg" id="crop-modal"
+            role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalCenterTitle">Resize Your Image</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="cropped-image"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" id="cancel-cropping">Cancle</button>
+                        <button type="button" id="upload-image" class="btn btn-primary">Upload</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        </div>
+        <%- include('../../partials/footer.ejs') %>
+
+       
+
+        </body>
+    </html>
