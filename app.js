@@ -43,8 +43,8 @@ app.use((error, req, res, next) =>{
     res.render('pages/error/500', { flashMessage: {} })
 })
 
-let DB_ADMIN = "blog_project"
-let DB_PASSWORD = "blog_project"
+let DB_ADMIN = env.config.DB_ADMIN
+let DB_PASSWORD = env.config.DB_PASSWORD
 
 //database connected
 const MONGODB_URL = `mongodb+srv://${DB_ADMIN}:${DB_PASSWORD}@demo.erwyk.mongodb.net/blog_project?retryWrites=true&w=majority`
