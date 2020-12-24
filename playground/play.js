@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const upload = require('../middleware/uploadMiddleware')
+var app = express();
 
 
 router.get('/play', (req, res, next) =>{
